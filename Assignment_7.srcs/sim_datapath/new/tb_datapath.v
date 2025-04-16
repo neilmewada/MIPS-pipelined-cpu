@@ -106,8 +106,9 @@ module tb_datapath;
         ra3D = 5'd16;
         ra_dm2 = 32'h10; // Read dmem at address 0x10
         
-        for (i = 0; i < 100; i = i + 1) begin
-            if (pc_current == 32'h3074) begin
+        for (i = 0; i < 1000; i = i + 1) begin // Never loop more than 1000 times
+            //if (pc_current == 32'h3074) begin
+            if (pc_current == 32'h30d0) begin
                 clk = 1'b0; #5;
                 $finish;
             end

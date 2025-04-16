@@ -1,7 +1,8 @@
 	addi $0, $0, 0 # NOP
 main:
 	addi $sp, $0, 48 
-	addi $a0, $0, 4 # set arg
+	addi $a0, $0, 5 # set arg
+
 	jal factorial # compute the factorial
 	addi $0, $0, 0 # NOP
 	addi $0, $0, 0 # NOP
@@ -37,14 +38,35 @@ factorial:
 
 	addi $v0, $0, 1 # yes - return 1
 	addi $sp, $sp, 8 # restore $sp
+	
 	jr $ra # return
+	addi $0, $0, 0 # NOP to wait for return
+	addi $0, $0, 0 # NOP
+	addi $0, $0, 0 # NOP
+
 else:
 	addi $a0, $a0, -1 # n = n - 1
+
 	jal factorial # recursive call
-	lw $ra, 0($sp) # restore $ra
+	addi $0, $0, 0 # NOP to wait for jal to compute jump address
+	addi $0, $0, 0 # NOP
+	addi $0, $0, 0 # NOP
+
 	lw $a0, 4($sp) # restore $a0
+	lw $ra, 0($sp) # restore $ra
+	
 	addi $sp, $sp, 8 # restore $sp
+
 	multu $a0, $v0 # n * factorial(n-1)
+	addi $0, $0, 0 # NOP to wait for multu result
+	addi $0, $0, 0 # NOP
+
 	mflo $v0 # mv result into $v0
+
 	jr $ra
+	addi $0, $0, 0 # NOP to wait for jr to compute jump address
+	addi $0, $0, 0 # NOP
+	addi $0, $0, 0 # NOP
+
 end:
+	addi $0, $0, 0 # NOP
