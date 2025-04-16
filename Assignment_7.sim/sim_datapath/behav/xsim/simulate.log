@@ -6,7 +6,6 @@ Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
-Break
 Writing 0x00000000 to register  0
 Writing 0x00000005 to register  4
 Inside else
@@ -19,20 +18,35 @@ Writing 0x00000000 to register  4
 Writing 0x00000001 to register  8
 Inside else
 multu = 0
-Writing 0x00000001 to register 16
+Writing 0x00000002 to register 16
 Inside else
 multu = 0
 Writing 0x00000000 to register  0
-Writing 0x00000000 to register  9
-Writing 0x00000000 to register  0
-Writing 0x00000000 to register  0
-Writing 0x00000000 to register  0
-Writing 0x00000000 to register  0
+Writing 0x00000001 to register  9
 Inside else
 multu = 0
 Writing 0x00000000 to register  0
 Inside else
 multu = 0
 Writing 0x00000000 to register  0
-Writing 0x00000010 to register 16
-$finish called at time : 215 ns : File "D:/MS CMPE/Comp. Architecture/MIPS-pipelined-cpu/Assignment_7.srcs/sim_datapath/new/tb_datapath.v" Line 120
+Writing 0x00000001 to register  0
+MULTU called, multu = 0
+Writing 0x00000000 to register  0
+Inside if
+multu = 1
+hi = 0x00000000, lo = 0x00000000
+hi = 0x00000000, lo = 0x0000000a
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+MFLO called
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Break
+Writing 0x00000000 to register  0
+Writing 0x0000000a to register 16
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+$finish called at time : 275 ns : File "D:/MS CMPE/Comp. Architecture/MIPS-pipelined-cpu/Assignment_7.srcs/sim_datapath/new/tb_datapath.v" Line 126

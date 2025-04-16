@@ -5,6 +5,12 @@ module hi_lo_regs(
         output reg [31:0] hi_reg,
         output reg [31:0] lo_reg
     );
+    
+    initial begin
+        hi_reg = 0;
+        lo_reg = 0;
+    end
+    
     always@(*) begin
         if(hi_lo_write) begin
             hi_reg <= hi_input;

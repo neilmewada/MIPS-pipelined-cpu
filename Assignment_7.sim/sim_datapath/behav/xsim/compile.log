@@ -38,5 +38,3 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MS CMPE/Comp. Architecture/MIPS-
 INFO: [VRFC 10-311] analyzing module signext
 INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MS CMPE/Comp. Architecture/MIPS-pipelined-cpu/Assignment_7.srcs/sim_datapath/new/tb_datapath.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module tb_datapath
-INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MS CMPE/Comp. Architecture/MIPS-pipelined-cpu/Assignment_7.sim/sim_datapath/behav/xsim/glbl.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module glbl
