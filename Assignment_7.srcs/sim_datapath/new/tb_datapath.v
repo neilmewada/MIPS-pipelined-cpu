@@ -40,7 +40,6 @@ module tb_datapath;
     wire [31:0] wd_rfW;
     
     wire [31:0] pc_current;
-    wire [31:0] alu_outE;
     wire [31:0] alu_outM;
     
     initial begin
@@ -58,7 +57,6 @@ module tb_datapath;
         .instr          (instr),
         .rd_dm          (rd_dm),
         .pc_current     (pc_current),
-        .alu_outE       (alu_outE),
         .wd_dmM         (wd_dmM),
         .we_dmM         (we_dmM),
         .rf_waW         (rf_waW),
@@ -69,7 +67,7 @@ module tb_datapath;
     );
     
     imem imem (
-        .a              (pc_current[7:2]),
+        .a              (pc_current[9:2]),
         .y              (instr)
     );
 
@@ -106,11 +104,13 @@ module tb_datapath;
         
         ra3D = 5'd4;
         ra3D = 5'd16;
-        ra_dm2 = 32'h00; // Read dmem at address 0
+        ra_dm2 = 32'h10; // Read dmem at address 0x10
         
         for (i = 0; i < 100; i = i + 1) begin
-            if (pc_current == 32'h3074)
+            if (pc_current == 32'h3074) begin
+                clk = 1'b0; #5;
                 $finish;
+            end
         
             if (i == 32'h15) begin
                 $display("Break");

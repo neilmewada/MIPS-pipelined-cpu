@@ -6,7 +6,6 @@ module datapath (
         input  wire [4:0]  ra3D,
 
         output wire [31:0] pc_current,
-        output wire [31:0] alu_outE,
         output wire [31:0] wd_dmM,
         output wire we_dmM,
         
@@ -225,7 +224,7 @@ module datapath (
     wire [31:0] btaE;
     wire zeroE;
     wire [4:0]  rf_waE;
-    //wire [31:0] alu_outE;
+    wire [31:0] alu_outE;
 
     wire [31:0] instrM;
     wire [31:0] alu_paM;

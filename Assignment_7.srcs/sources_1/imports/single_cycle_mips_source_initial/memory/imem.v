@@ -1,5 +1,5 @@
 module imem (
-        input  wire [5:0]  a,
+        input  wire [7:0]  a,
         output wire [31:0] y
     );
 
