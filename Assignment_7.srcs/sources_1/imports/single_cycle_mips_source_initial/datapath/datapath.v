@@ -13,14 +13,9 @@ module datapath (
         // Debugging wires
         output wire [4:0] rf_waW,
         output wire [31:0] rd3D,
-        output wire we_regD,
-        output wire we_regE,
-        output wire we_regM,
         output wire we_regW,
         output wire [31:0] wd_rfW,
-        output wire [31:0] alu_outM,
-        output wire [31:0] hi_reg_outM,     // hi_lo reg output
-        output wire [31:0] lo_reg_outM     // hi_lo reg output
+        output wire [31:0] alu_outM
     );
 
     
@@ -41,6 +36,10 @@ module datapath (
     wire [31:0] mult_lo_outE;     // MULTU output
     wire [31:0] hi_reg_outE;     // hi_lo reg output
     wire [31:0] lo_reg_outE;     // hi_lo reg output
+    
+    wire we_regD;
+    wire we_regE;
+    wire we_regM;
     
     //wire [4:0]       rf_waW;
     //wire        wd_rfW;
@@ -247,8 +246,8 @@ module datapath (
     //wire we_regM;
     wire [31:0] wd_dmE;
 
-    //wire [31:0] hi_reg_outM;     // hi_lo reg output
-    //wire [31:0] lo_reg_outM;     // hi_lo reg output
+    wire [31:0] hi_reg_outM;     // hi_lo reg output
+    wire [31:0] lo_reg_outM;     // hi_lo reg output
 
     wire [31:0] rf_wd_outE;      // output of mux to input of last mux for wd
 

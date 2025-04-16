@@ -36,15 +36,12 @@ module tb_datapath;
     wire [31:0]  wd_dmM;
     wire [4:0]   rf_waW;
     wire we_dmM;
-    wire we_regD; wire we_regE; wire we_regM; wire we_regW;
+    wire we_regW;
     wire [31:0] wd_rfW;
     
     wire [31:0] pc_current;
     wire [31:0] alu_outE;
     wire [31:0] alu_outM;
-    
-    wire [31:0] hi_reg_outM;     // hi_lo reg output
-    wire [31:0] lo_reg_outM;     // hi_lo reg output
     
     initial begin
         clk = 0;
@@ -66,15 +63,9 @@ module tb_datapath;
         .we_dmM         (we_dmM),
         .rf_waW         (rf_waW),
         .rd3D           (rd3D),
-        .we_regD        (we_regD),
-        .we_regE        (we_regE),
-        .we_regM        (we_regM),
         .we_regW        (we_regW),
         .wd_rfW         (wd_rfW),
-        .alu_outM       (alu_outM),
-        
-        .hi_reg_outM    (hi_reg_outM),
-        .lo_reg_outM    (lo_reg_outM)
+        .alu_outM       (alu_outM)
     );
     
     imem imem (
@@ -113,10 +104,14 @@ module tb_datapath;
         #5 // Wait for a delay before starting the test
         reset;
         
+        ra3D = 5'd4;
         ra3D = 5'd16;
         ra_dm2 = 32'h00; // Read dmem at address 0
         
-        for (i = 0; i < 26; i = i + 1) begin
+        for (i = 0; i < 100; i = i + 1) begin
+            if (pc_current == 32'h3074)
+                $finish;
+        
             if (i == 32'h15) begin
                 $display("Break");
             end
