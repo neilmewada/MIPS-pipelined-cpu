@@ -63,12 +63,21 @@ module fact_reg #(parameter WIDTH = 32) (
     q = 0;
     end
     
-    always @(posedge clk, posedge rst) begin
+    always @(*) begin
+        if (rst) begin
+            q <= 0;
+        end
+        else if (clk && load_reg) begin
+            q <= d;
+        end
+    end
+    
+    /*always @(posedge clk, posedge rst) begin
         if (rst)
             q <= 0;
         else if (load_reg)
             q <= d;
-    end
+    end*/
     
 endmodule
 
@@ -104,7 +113,12 @@ module factorial_wrapper(
         input  wire [1:0]  a,
         input  wire [3:0]  wd,
         
-        output wire [31:0] rd
+        output wire [31:0] rd,
+        
+        // Debugging wires
+        output wire        go,
+        output wire [3:0]  n,
+        output wire        go_pulse
     );
     
     reg res_done;
@@ -124,9 +138,9 @@ module factorial_wrapper(
     wire done;
     wire err;
     
-    wire [3:0] n;
-    wire go;
-    wire go_pulse;
+    //wire go;
+    //wire [3:0] n;
+    //wire go_pulse;
     
     wire [31:0] result;
     
