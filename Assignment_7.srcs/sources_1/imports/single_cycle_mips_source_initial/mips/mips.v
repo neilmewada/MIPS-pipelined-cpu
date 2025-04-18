@@ -7,7 +7,14 @@ module mips(
         
         output wire [31:0]  rd3D,
         output wire [31:0]  pc_current,
-        output wire [31:0]  instr
+        output wire [31:0]  instr,
+        
+        // Debugging wires
+        output wire [31:0]  wd_dmM,
+        output wire [31:0] alu_outM,
+        output wire we_mem,
+        output wire we_fact,
+        output wire [1:0] rd_sel
     );
     
     //reg [4:0] ra3D;
@@ -18,14 +25,14 @@ module mips(
     
     //wire [31:0]  instr;
     wire [31:0]  rd_dm;
-    wire [31:0]  wd_dmM;
+    //wire [31:0]  wd_dmM;
     wire [4:0]   rf_waW;
     wire we_dmM;
     wire we_regW;
     wire [31:0] wd_rfW;
     
     //wire [31:0] pc_current;
-    wire [31:0] alu_outM;
+    //wire [31:0] alu_outM;
     
     initial begin
         //ra3D = 0;
@@ -55,10 +62,10 @@ module mips(
         .y              (instr)
     );
     
-    wire we_mem;
-    wire we_fact;
+    //wire we_mem;
+    //wire we_fact;
     wire we_gpio;
-    wire [1:0] rd_sel;
+    //wire [1:0] rd_sel;
     
     wire [31:0] mem_data;
     wire [31:0] fact_data;

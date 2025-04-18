@@ -28,7 +28,10 @@ module maindec (
             6'b00_0011: ctrl = 11'b0_1_10_1_0_0_10_00; // JAL
             6'b10_1011: ctrl = 11'b0_0_00_0_1_1_00_00; // SW
             6'b10_0011: ctrl = 11'b0_0_00_1_1_0_01_00; // LW
-            default:    ctrl = 11'bx_x_xx_x_x_x_xx_xx;
+            default:    begin
+                ctrl = 11'bx_x_xx_x_x_x_xx_xx;
+                $display("Unimplemented instruction encountered!");
+            end
         endcase
     end
 

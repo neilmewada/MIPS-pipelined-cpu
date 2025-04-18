@@ -30,6 +30,12 @@ module tb_mips;
     wire [31:0] pc_current;
     wire [31:0]  instr;
     
+    wire [31:0]  wd_dmM;
+    wire [31:0] alu_outM;
+    wire we_mem;
+    wire we_fact;
+    wire [1:0] rd_sel;
+    
     integer i;
 
     initial begin
@@ -45,7 +51,13 @@ module tb_mips;
         .ra3D       (ra3D),
         .rd3D       (rd3D),
         .pc_current (pc_current),
-        .instr      (instr)
+        .instr      (instr),
+        
+        .wd_dmM     (wd_dmM),
+        .alu_outM   (alu_outM),
+        .we_mem     (we_mem),
+        .we_fact    (we_fact),
+        .rd_sel     (rd_sel)
     );
     
     task tick; 
@@ -75,14 +87,13 @@ module tb_mips;
         
         // 1000 max iterations
         for (i = 0; i < 1000; i = i + 1) begin
-            if (pc_current == 32'h30d0) begin
+            if (instr == 32'd0) begin
                 clk = 1'b0; #5;
                 $finish;
             end
             
-            if (instr == 32'd0) begin
-                clk = 1'b0; #5;
-                $finish;
+            if (i == 2) begin
+                $display("Break");
             end
             
             tick;

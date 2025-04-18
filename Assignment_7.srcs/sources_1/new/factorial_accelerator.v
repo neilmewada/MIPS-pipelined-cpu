@@ -146,8 +146,6 @@ module fac_controlunit #(parameter BUS_WIDTH=32) (
             S0: begin
                 if (go)
                     next = error_status ? S1 : S2; // S1 = Error
-                else
-                    next = S0;
             end
             S1: begin // Error (In > 12)
                 done <= 0;

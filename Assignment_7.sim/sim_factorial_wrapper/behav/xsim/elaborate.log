@@ -21,7 +21,7 @@ Compiling module xil_defaultlib.REG
 Compiling module xil_defaultlib.fac_datapath
 Compiling module xil_defaultlib.factorial_accelerator
 Compiling module xil_defaultlib.fact_result_reg
-Compiling module xil_defaultlib.mux4
+Compiling module xil_defaultlib.fw_mux4
 Compiling module xil_defaultlib.factorial_wrapper
 Compiling module xil_defaultlib.tb_factorial_wrapper
 Compiling module xil_defaultlib.glbl

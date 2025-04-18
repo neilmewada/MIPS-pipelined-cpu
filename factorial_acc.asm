@@ -1,9 +1,11 @@
 	addi $0, $0, 0 # NOP
 main:
-	addi $t0, $0, 0x8000 # set $t0 to 0x8000
+	addi $t0, $0, 1 # set $t0 to 0x8000
 	addi $s0, $0, 5 # set arg
 	addi $t1, $0, 1 # set $t1 to 1
+	sll $t0, $t0, 15 # shift left to get 0x8000
 
+	addi $0, $0, 0 # NOP
 	addi $0, $0, 0 # NOP
 	
 	sw $s0, 0($t0) # fact[0] = 5

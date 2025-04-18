@@ -112,7 +112,9 @@ module tb_factorial_wrapper;
         
         for (i = 0; i < 32; i = i + 1) begin
             if (rd != 0) begin
+                tick;
                 a = 2'b11; // Read mode: data output
+                tick;
                 tick;
                 $finish;
             end

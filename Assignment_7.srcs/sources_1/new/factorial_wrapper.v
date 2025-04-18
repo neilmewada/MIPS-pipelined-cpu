@@ -225,7 +225,7 @@ module factorial_wrapper(
     );*/
     
     factorial_accelerator fact_acc(
-        .clk        (clk_out),
+        .clk        (clk),
         .go         (go_pulse),
         .number     ({28'd0, n}),
         .done       (done),
