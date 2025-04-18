@@ -45,6 +45,8 @@ module tb_factorial_wrapper;
     wire go;
     wire [3:0] n;
     wire go_pulse;
+    wire we1;
+    wire we2;
     
     factorial_wrapper fact(
         .rst    (rst),
@@ -56,7 +58,9 @@ module tb_factorial_wrapper;
         
         .go     (go),
         .n      (n),
-        .go_pulse (go_pulse)
+        .go_pulse (go_pulse),
+        .we1    (we1),
+        .we2    (we2)
     );
     
     task reset;
@@ -85,17 +89,16 @@ module tb_factorial_wrapper;
         wd = 4'd5;  // n = 5
         we = 1;
         tick;
-        tick;
         
         a = 2'b01;  // Write mode: Go
         wd = 4'd1;  // Go = 1
         we = 1;
         tick;
-        tick;
         
         we = 0;
         
         a = 2'b10; // Read mode: Done,Err
+        a = 2'b00;
         wd = 4'd0;
         tick;
         

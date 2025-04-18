@@ -20,12 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module fact_ad(
+        input  wire        clk,
         input  wire [1:0]  a,
         input  wire        we,
         
         output reg         we1,
         output reg         we2,
-        output wire [1:0]  rd_sel
+        output wire [1:0]  rd_sel,
+        output wire        clk_out
     );
     
     initial begin
@@ -33,19 +35,28 @@ module fact_ad(
     we2 = 0;
     end
     
-    always @(*) begin
+    always @(posedge clk) begin
         case (a)
             2'b00: begin
-                we1 <= we;
-                we2 <= 0;
+                we1 = we;
+                we2 = 0;
             end
             2'b01: begin
-                we1 <= 0;
-                we2 <= we;
+                we1 = 0;
+                we2 = we;
+            end
+            2'b10: begin
+                we1 = 0;
+                we2 = 0;
+            end
+            2'b11: begin
+                we1 = 0;
+                we2 = 0;
             end
         endcase
     end
     
+    assign clk_out = clk;
     assign rd_sel = a;
 
 endmodule
@@ -63,21 +74,12 @@ module fact_reg #(parameter WIDTH = 32) (
     q = 0;
     end
     
-    always @(*) begin
-        if (rst) begin
-            q <= 0;
-        end
-        else if (clk && load_reg) begin
-            q <= d;
-        end
-    end
-    
-    /*always @(posedge clk, posedge rst) begin
+    always @(posedge clk, posedge rst) begin
         if (rst)
             q <= 0;
         else if (load_reg)
             q <= d;
-    end*/
+    end
     
 endmodule
 
@@ -118,15 +120,17 @@ module factorial_wrapper(
         // Debugging wires
         output wire        go,
         output wire [3:0]  n,
-        output wire        go_pulse
+        output wire        go_pulse,
+        output  wire       we1,
+        output  wire       we2
     );
     
     reg res_done;
     reg res_err;
     wire go_pulse_cmb;
     
-    wire we1;
-    wire we2;
+    //wire we1;
+    //wire we2;
     wire [1:0] rd_sel;
     
     wire zero;
@@ -143,6 +147,7 @@ module factorial_wrapper(
     //wire go_pulse;
     
     wire [31:0] result;
+    wire clk_out;
     
     initial begin
         res_done = 0;
@@ -150,15 +155,17 @@ module factorial_wrapper(
     end
     
     fact_ad ad(
+        .clk    (clk),
         .a      (a),
         .we     (we),
         .we1    (we1),
         .we2    (we2),
-        .rd_sel (rd_sel)
+        .rd_sel (rd_sel),
+        .clk_out (clk_out)
     );
     
     fact_reg #(.WIDTH(4)) n_reg(
-        .clk      (clk),
+        .clk      (clk_out),
         .rst      (zero),
         .d        (wd),
         .load_reg (we1),
@@ -166,7 +173,7 @@ module factorial_wrapper(
     );
     
     fact_reg #(.WIDTH(1)) go_reg(
-        .clk        (clk),
+        .clk        (clk_out),
         .rst        (zero),
         .d          (wd[0]),
         .load_reg   (we2),
@@ -176,7 +183,7 @@ module factorial_wrapper(
     assign go_pulse_cmb = wd[0] & we2;
     
     fact_reg #(.WIDTH(1)) go_pulse_reg(
-        .clk        (clk),
+        .clk        (clk_out),
         .rst        (zero),
         .d          (go_pulse_cmb),
         .load_reg   (one),
@@ -186,7 +193,7 @@ module factorial_wrapper(
     wire [31:0] data_out;
     
     factorial_accelerator fact_acc(
-        .clk        (clk),
+        .clk        (clk_out),
         .go         (go_pulse),
         .number     ({28'd0, n}),
         .done       (done),
@@ -195,7 +202,7 @@ module factorial_wrapper(
     );
     
     fact_reg #(.WIDTH(32)) result_reg(
-        .clk        (clk),
+        .clk        (clk_out),
         .rst        (zero),
         .d          (data_out),
         .load_reg   (done),
@@ -203,7 +210,7 @@ module factorial_wrapper(
     );
     
     // res_done register
-    always @(posedge clk, posedge rst) begin
+    always @(posedge clk_out, posedge rst) begin
         if (rst)
             res_done <= 1'b0;
         else
@@ -211,7 +218,7 @@ module factorial_wrapper(
     end
     
     // res_err register
-    always @(posedge clk, posedge rst) begin
+    always @(posedge clk_out, posedge rst) begin
         if (rst)
             res_err <= 1'b0;
         else
@@ -220,7 +227,7 @@ module factorial_wrapper(
     
     mux4 out_mux(
         .sel        (rd_sel),
-        .a          ({28'd0, wd[3:0]}),
+        .a          ({28'd0, n}),
         .b          ({31'd0, go}),
         .c          ({30'd0, res_err, res_done}),
         .d          (result),
