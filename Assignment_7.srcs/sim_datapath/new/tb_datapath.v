@@ -74,12 +74,12 @@ module tb_datapath;
     dmem dmem (
         .clk            (clk),
         .we             (we_dmM),
-        .a              (alu_outM[7:2]),
+        .a              (alu_outM[9:2]),
         .d              (wd_dmM),
         .q              (rd_dm),
         .rst            (rst),
         
-        .a2             (ra_dm2[7:2]),
+        .a2             (ra_dm2[9:2]),
         .q2             (rd_dm2)
     );
     

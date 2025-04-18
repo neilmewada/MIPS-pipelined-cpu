@@ -1,13 +1,13 @@
  module dmem (
         input  wire        clk,
         input  wire        we,
-        input  wire [5:0]  a,
+        input  wire [7:0]  a,
         input  wire [31:0] d,
         output wire [31:0] q,
         input  wire        rst,
         
         // For debugging only
-        input  wire [5:0]  a2,
+        input  wire [7:0]  a2,
         output wire [31:0] q2
     );
 
