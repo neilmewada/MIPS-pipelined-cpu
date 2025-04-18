@@ -112,10 +112,6 @@ module tb_datapath;
                 clk = 1'b0; #5;
                 $finish;
             end
-        
-            if (i == 32'h15) begin
-                $display("Break");
-            end
            tick; 
         end
         
