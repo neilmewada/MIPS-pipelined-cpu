@@ -121,8 +121,11 @@ module factorial_wrapper(
         output wire        go,
         output wire [3:0]  n,
         output wire        go_pulse,
-        output  wire       we1,
-        output  wire       we2
+        output wire        we1,
+        output wire        we2,
+        output wire [31:0] data_out,
+        output wire [31:0] result,
+        output wire        done
     );
     
     reg res_done;
@@ -139,14 +142,15 @@ module factorial_wrapper(
     wire one;
     assign one = 1'b1;
     
-    wire done;
+    //wire done;
     wire err;
     
     //wire go;
     //wire [3:0] n;
     //wire go_pulse;
     
-    wire [31:0] result;
+    //wire [31:0] data_out;
+    //wire [31:0] result;
     wire clk_out;
     
     initial begin
@@ -181,23 +185,22 @@ module factorial_wrapper(
     );
     
     assign go_pulse_cmb = wd[0] & we2;
+    assign go_pulse = go_pulse_cmb;
     
-    fact_reg #(.WIDTH(1)) go_pulse_reg(
+    /*fact_reg #(.WIDTH(1)) go_pulse_reg(
         .clk        (clk_out),
         .rst        (zero),
         .d          (go_pulse_cmb),
         .load_reg   (one),
         .q          (go_pulse)
-    );
-    
-    wire [31:0] data_out;
+    );*/
     
     factorial_accelerator fact_acc(
         .clk        (clk_out),
         .go         (go_pulse),
         .number     ({28'd0, n}),
         .done       (done),
-        .error      (error),
+        .error      (err),
         .data_out   (data_out)
     );
     

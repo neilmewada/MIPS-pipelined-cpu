@@ -47,6 +47,9 @@ module tb_factorial_wrapper;
     wire go_pulse;
     wire we1;
     wire we2;
+    wire [31:0] data_out;
+    wire [31:0] result;
+    wire done;
     
     factorial_wrapper fact(
         .rst    (rst),
@@ -60,7 +63,10 @@ module tb_factorial_wrapper;
         .n      (n),
         .go_pulse (go_pulse),
         .we1    (we1),
-        .we2    (we2)
+        .we2    (we2),
+        .data_out (data_out),
+        .result (result),
+        .done   (done)
     );
     
     task reset;
@@ -98,13 +104,13 @@ module tb_factorial_wrapper;
         we = 0;
         
         a = 2'b10; // Read mode: Done,Err
-        a = 2'b00;
+        //a = 2'b00;
         wd = 4'd0;
         tick;
         
         tick;
         
-        /*for (i = 0; i < 32; i = i + 1) begin
+        for (i = 0; i < 32; i = i + 1) begin
             if (rd != 0) begin
                 a = 2'b11; // Read mode: data output
                 tick;
@@ -112,7 +118,7 @@ module tb_factorial_wrapper;
             end
             
             tick;
-        end*/
+        end
     
         $finish;
     end
