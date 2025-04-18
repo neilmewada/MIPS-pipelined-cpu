@@ -361,4 +361,4 @@ Writing 0x00000078 to register 16
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
-$finish called at time : 1770 ns : File "D:/MS CMPE/Comp. Architecture/MIPS-pipelined-cpu/Assignment_7.srcs/sim_mips/new/tb_mips.v" Line 78
+$finish called at time : 1770 ns : File "D:/MS CMPE/Comp. Architecture/MIPS-pipelined-cpu/Assignment_7.srcs/sim_mips/new/tb_mips.v" Line 80

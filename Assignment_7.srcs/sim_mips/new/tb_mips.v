@@ -28,6 +28,7 @@ module tb_mips;
     wire [31:0] rd3D;
     
     wire [31:0] pc_current;
+    wire [31:0]  instr;
     
     integer i;
 
@@ -38,12 +39,13 @@ module tb_mips;
         //ra_dm2 = 0;
     end
     
-    mips mips (
+    mips DUT (
         .clk        (clk),
         .rst        (rst),
         .ra3D       (ra3D),
         .rd3D       (rd3D),
-        .pc_current (pc_current)
+        .pc_current (pc_current),
+        .instr      (instr)
     );
     
     task tick; 
@@ -74,6 +76,11 @@ module tb_mips;
         // 1000 max iterations
         for (i = 0; i < 1000; i = i + 1) begin
             if (pc_current == 32'h30d0) begin
+                clk = 1'b0; #5;
+                $finish;
+            end
+            
+            if (instr == 32'd0) begin
                 clk = 1'b0; #5;
                 $finish;
             end

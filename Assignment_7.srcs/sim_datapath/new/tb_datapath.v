@@ -112,6 +112,12 @@ module tb_datapath;
                 clk = 1'b0; #5;
                 $finish;
             end
+            
+            if (instr == 32'd0) begin
+                clk = 1'b0; #5;
+                $finish;
+            end
+            
            tick; 
         end
         

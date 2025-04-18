@@ -6,7 +6,8 @@ module mips(
         input  wire [4:0]   ra3D,
         
         output wire [31:0]  rd3D,
-        output wire [31:0] pc_current
+        output wire [31:0]  pc_current,
+        output wire [31:0]  instr
     );
     
     //reg [4:0] ra3D;
@@ -15,7 +16,7 @@ module mips(
     reg [31:0] ra_dm2;
     wire [31:0] rd_dm2;
     
-    wire [31:0]  instr;
+    //wire [31:0]  instr;
     wire [31:0]  rd_dm;
     wire [31:0]  wd_dmM;
     wire [4:0]   rf_waW;
