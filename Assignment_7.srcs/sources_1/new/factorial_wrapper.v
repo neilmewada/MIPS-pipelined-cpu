@@ -83,6 +83,35 @@ module fact_reg #(parameter WIDTH = 32) (
     
 endmodule
 
+module fact_result_reg (
+        input  wire          clk,
+        input  wire          rst,
+        input  wire [31:0]   d,
+        input  wire          load_reg,
+        
+        output reg  [31:0]  q
+    );
+    
+    initial begin
+    q = 0;
+    end
+    
+    always @(*) begin
+        if (rst)
+            q <= 0;
+        else if (load_reg && clk)
+            q <= d;
+    end
+    
+    /*always @(posedge clk, posedge rst) begin
+        if (rst)
+            q <= 0;
+        else if (load_reg)
+            q <= d;
+    end*/
+    
+endmodule
+
 module mux4 #(parameter WIDTH = 32) (
         input  wire [1:0]       sel,
         input  wire [WIDTH-1:0] a,
@@ -204,7 +233,7 @@ module factorial_wrapper(
         .data_out   (data_out)
     );
     
-    fact_reg #(.WIDTH(32)) result_reg(
+    fact_result_reg result_reg(
         .clk        (clk_out),
         .rst        (zero),
         .d          (data_out),
