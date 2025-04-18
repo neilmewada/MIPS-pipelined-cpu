@@ -53,7 +53,7 @@ INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MS CMPE/Comp. Architecture/MIPS-
 INFO: [VRFC 10-311] analyzing module fact_ad
 INFO: [VRFC 10-311] analyzing module fact_reg
 INFO: [VRFC 10-311] analyzing module fact_result_reg
-INFO: [VRFC 10-311] analyzing module mux4
+INFO: [VRFC 10-311] analyzing module fw_mux4
 INFO: [VRFC 10-311] analyzing module factorial_wrapper
 INFO: [VRFC 10-2263] Analyzing Verilog file "D:/MS CMPE/Comp. Architecture/MIPS-pipelined-cpu/Assignment_7.srcs/sim_mips/new/tb_mips.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module tb_mips

@@ -112,7 +112,7 @@ module fact_result_reg (
     
 endmodule
 
-module mux4 #(parameter WIDTH = 32) (
+module fw_mux4 #(parameter WIDTH = 32) (
         input  wire [1:0]       sel,
         input  wire [WIDTH-1:0] a,
         input  wire [WIDTH-1:0] b,
@@ -257,7 +257,7 @@ module factorial_wrapper(
             res_err <= (~go_pulse_cmb) & (err | res_err);
     end
     
-    mux4 out_mux(
+    fw_mux4 out_mux(
         .sel        (rd_sel),
         .a          ({28'd0, n}),
         .b          ({31'd0, go}),

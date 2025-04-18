@@ -25,7 +25,7 @@ module address_decoder(
         input  wire [1:0]  a, // a = address[15:14]
         
         output reg         we_mem,
-        output reg         we_fac,
+        output reg         we_fact,
         output reg         we_gpio,
         output wire [1:0]  rd_sel
     );
@@ -36,7 +36,7 @@ module address_decoder(
     
     initial begin
     we_mem = 0;
-    we_fac = 0;
+    we_fact = 0;
     we_gpio = 0;
     end
     
@@ -44,17 +44,17 @@ module address_decoder(
         case (a)
             2'b00: begin
                 we_mem <= we;
-                we_fac <= 0;
+                we_fact <= 0;
                 we_gpio <= 0; 
             end
             2'b10: begin // 0x8
                 we_mem <= 0;
-                we_fac <= we;
+                we_fact <= we;
                 we_gpio <= 0; 
             end
             2'b11: begin // 0xC
                 we_mem <= 0;
-                we_fac <= 0;
+                we_fact <= 0;
                 we_gpio <= we; 
             end
         endcase

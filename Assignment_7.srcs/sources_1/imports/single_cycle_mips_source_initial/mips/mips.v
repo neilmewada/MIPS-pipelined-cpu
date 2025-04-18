@@ -53,17 +53,53 @@ module mips(
         .a              (pc_current[9:2]),
         .y              (instr)
     );
+    
+    wire we_mem;
+    wire we_fact;
+    wire we_gpio;
+    wire [1:0] rd_sel;
+    
+    wire [31:0] mem_data;
+    wire [31:0] fact_data;
+    
+    address_decoder ad (
+        .we             (we_dmM),
+        .a              (alu_outM[15:14]),
+        .we_mem         (we_mem),
+        .we_fact        (we_fact),
+        .we_gpio        (we_gpio),
+        .rd_sel         (rd_sel)
+    );
 
     dmem dmem (
         .clk            (clk),
         .we             (we_dmM),
         .a              (alu_outM[9:2]),
         .d              (wd_dmM),
-        .q              (rd_dm),
+        .q              (mem_data),
         .rst            (rst),
         
         .a2             (ra_dm2[9:2]),
         .q2             (rd_dm2)
+    );
+    
+    
+    factorial_wrapper fact (
+        .rst    (rst),
+        .clk    (clk),
+        .we     (we_fact),
+        .a      (alu_outM[3:2]),
+        .wd     (wd_dmM[3:0]),
+        .rd     (fact_data)
+    );
+    
+    fw_mux4 #(.WIDTH(32)) read_mux (
+        .sel        (rd_sel),
+        .a          (mem_data),
+        .b          (mem_data),
+        .c          (fact_data),
+        .d          (32'd0),
+        .y          (rd_dm)
     );
 
 endmodule
