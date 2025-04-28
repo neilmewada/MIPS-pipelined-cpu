@@ -6,12 +6,23 @@ Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
+Inside else
+multu = 0
 Writing 0x00000000 to register  0
+Inside else
+multu = 0
 Writing 0x00000005 to register  4
-Writing 0x00000001 to register  4
+Writing 0x0000000a to register  4
+Writing 0x00000010 to register  4
+Inside else
+multu = 0
+Inside else
+multu = 0
+Writing 0x0000000a to register  5
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000005 to register  5
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
-Writing 0x00000000 to register  0
-Writing 0x00000000 to register  0
-Writing 0x00000000 to register  0
-$finish called at time : 140 ns : File "D:/MS CMPE/Comp. Architecture/MIPS-pipelined-cpu/Assignment_7.srcs/sim_datapath/new/tb_datapath.v" Line 113
+$finish called at time : 150 ns : File "D:/MS CMPE/Comp. Architecture/MIPS-pipelined-cpu/Assignment_7.srcs/sim_datapath/new/tb_datapath.v" Line 129

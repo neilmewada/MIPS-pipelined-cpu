@@ -33,6 +33,7 @@ module tb_datapath;
     
     wire [31:0]  instr;
     wire [31:0]  rd_dm;
+    wire [31:0]  wd_dmE;
     wire [31:0]  wd_dmM;
     wire [4:0]   rf_waW;
     wire we_dmM;
@@ -41,6 +42,12 @@ module tb_datapath;
     
     wire [31:0] pc_current;
     wire [31:0] alu_outM;
+    
+    wire stallF;
+    wire stallD;
+    wire flushE;
+    wire [1:0]   ForwardAE;
+    wire [1:0]   ForwardBE;
     
     initial begin
         clk = 0;
@@ -57,13 +64,20 @@ module tb_datapath;
         .instr          (instr),
         .rd_dm          (rd_dm),
         .pc_current     (pc_current),
+        .wd_dmE         (wd_dmE),
         .wd_dmM         (wd_dmM),
         .we_dmM         (we_dmM),
         .rf_waW         (rf_waW),
         .rd3D           (rd3D),
         .we_regW        (we_regW),
         .wd_rfW         (wd_rfW),
-        .alu_outM       (alu_outM)
+        .alu_outM       (alu_outM),
+        
+        .stallF         (stallF),
+        .stallD         (stallD),
+        .flushE         (flushE),
+        .ForwardAE      (ForwardAE),
+        .ForwardBE      (ForwardBE)
     );
     
     imem imem (
@@ -103,7 +117,9 @@ module tb_datapath;
         reset;
         
         ra3D = 5'd4;
+        ra3D = 5'd5;
         //ra3D = 5'd16;
+        
         ra_dm2 = 32'h10; // Read dmem at address 0x10
         
         for (i = 0; i < 1000; i = i + 1) begin // Never loop more than 1000 times

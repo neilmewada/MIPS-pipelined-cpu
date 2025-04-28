@@ -16,7 +16,8 @@
     integer n;
 
     initial begin
-        for (n = 0; n < 64; n = n + 1) ram[n] = 32'hFFFFFFFF;
+        for (n = 0; n < 64; n = n + 1) 
+            ram[n] = 32'hFFFFFFFF;
     end
     
     always @ (posedge rst) begin

@@ -6,6 +6,7 @@ module datapath (
         input  wire [4:0]  ra3D,
 
         output wire [31:0] pc_current,
+        output wire [31:0] wd_dmE,
         output wire [31:0] wd_dmM,
         output wire we_dmM,
         
@@ -14,7 +15,12 @@ module datapath (
         output wire [31:0] rd3D,
         output wire we_regW,
         output wire [31:0] wd_rfW,
-        output wire [31:0] alu_outM
+        output wire [31:0] alu_outM,
+        output wire stallF,
+        output wire stallD,
+        output wire flushE,
+        output wire [1:0]   ForwardAE,
+        output wire [1:0]   ForwardBE
     );
 
     
@@ -36,6 +42,8 @@ module datapath (
     wire [31:0] hi_reg_outE;     // hi_lo reg output
     wire [31:0] lo_reg_outE;     // hi_lo reg output
     
+    wire [1:0] dm2regE;
+    
     wire we_regD;
     wire we_regE;
     wire we_regM;
@@ -47,6 +55,33 @@ module datapath (
     //assign pc_src = branch & zero;
     //assign ba = {sext_imm[29:0], 2'b00};
     //assign jta = {pc_plus4[31:28], instr[25:0], 2'b00};
+    
+    wire [4:0]  rf_waM;
+    
+    wire [4:0]  rsD;
+    wire [4:0]  rtD;
+    wire [4:0]  rsE;
+    wire [4:0]  rtE;
+    
+    hazard_unit hazard(
+        .clk            (clk),
+        .we_regE        (we_regE),
+        .we_regM        (we_regM),
+        .we_regW        (we_regW),
+        .rf_waM         (rf_waM),
+        .rf_waW         (rf_waW),
+        .rsD            (rsD),
+        .rsE            (rsE),
+        .rtD            (rtD),
+        .rtE            (rtE),
+        .dm2regE        (dm2regE),
+        
+        .stallF         (stallF),
+        .stallD         (stallD),
+        .flushE         (flushE),
+        .ForwardAE      (ForwardAE),
+        .ForwardBE      (ForwardBE)
+    );
 
     // ----------------------------------------------------------
     // --- IF Stage ---
@@ -63,6 +98,7 @@ module datapath (
     dreg pc_reg (
             .clk            (clk),
             .rst            (rst),
+            .en             (~stallF),
             .d              (pc_finalF), // Change this to it's stage
             .q              (pc_currentF)
         );
@@ -81,7 +117,7 @@ module datapath (
     if_id_reg if_id (
         .instrF     (instr),
         .pc_plus4F  (pc_plus4F),
-        .en         (1'b1),
+        .en         (~stallD),
         .clk        (clk),
 
         .instrD     (instrD),
@@ -93,8 +129,6 @@ module datapath (
 
     wire [31:0] rd1D;
     wire [31:0] rd2D;
-    wire [4:0]  rsD;
-    wire [4:0]  rtD;
     wire [4:0]  rdD;
 
     wire [31:0] pc_plus4E;
@@ -102,8 +136,6 @@ module datapath (
     wire [31:0] instrE;
     wire [31:0] rd1E;
     wire [31:0] rd2E;
-    wire [4:0]  rsE;
-    wire [4:0]  rtE;
     wire [4:0]  rdE;
 
     wire branchD;
@@ -129,7 +161,7 @@ module datapath (
     //wire we_regE;
     wire alu_srcE;
     wire we_dmE;
-    wire [1:0] dm2regE;
+    
     wire [2:0] alu_ctrlE;
 
     controlunit cu(
@@ -149,6 +181,9 @@ module datapath (
         .dm2reg         (dm2regD),
         .alu_ctrl       (alu_ctrlD)
     );
+    
+    assign rsD = instrD[25:21];
+    assign rtD = instrD[20:16]; 
 
     regfile rf (
             .clk            (clk),
@@ -192,7 +227,7 @@ module datapath (
         .sext_immD  (sext_immD),
         .instrD     (instrD),
 
-        .clr        (1'd0),
+        .clr        (flushE),
         .clk        (clk),
 
         .pc_plus4E  (pc_plus4E),
@@ -230,7 +265,6 @@ module datapath (
     wire [31:0] alu_paM;
     wire [31:0] btaM;
     wire zeroM;
-    wire [4:0]  rf_waM;
     wire [31:0] pc_plus4M;
     //wire [31:0] alu_outM;
 
@@ -243,22 +277,37 @@ module datapath (
     wire [1:0] dm2regM;
     //wire we_dmM;
     //wire we_regM;
-    wire [31:0] wd_dmE;
+    //wire [31:0] wd_dmE;
 
     wire [31:0] hi_reg_outM;     // hi_lo reg output
     wire [31:0] lo_reg_outM;     // hi_lo reg output
 
     wire [31:0] rf_wd_outE;      // output of mux to input of last mux for wd
 
+    mux3 #(32) forwardB_mux(
+        .sel        (ForwardBE),
+        .a          (rd2E),
+        .b          (wd_rfW),
+        .c          (alu_outM),
+        .y          (wd_dmE)
+    );
+
     mux2 #(32) alu_pb_mux (
         .sel            (alu_srcE),
-        .a              (rd2E),
+        .a              (wd_dmE),
         .b              (sext_immE),
         .y              (alu_pbE)
     );
+    
+    mux3 #(32) forwardA_mux(
+        .sel        (ForwardAE),
+        .a          (rd1E),
+        .b          (wd_rfW),
+        .c          (alu_outM),
+        .y          (alu_paE)
+    );
 
-    assign alu_paE = rd1E;
-    assign wd_dmE = rd2E;
+    //assign alu_paE = rd1E;
 
     alu alu (
         .op             (alu_ctrlE),
