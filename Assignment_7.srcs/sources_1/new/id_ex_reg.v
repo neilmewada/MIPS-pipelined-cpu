@@ -42,6 +42,7 @@ module id_ex_reg(
         input  wire [31:0] pc_plus4D,
         input  wire [31:0] sext_immD,
         input  wire [31:0] instrD,
+        input  wire [31:0] btaD,
         
         input  wire        clr,
         input  wire        clk,
@@ -53,7 +54,8 @@ module id_ex_reg(
         output reg  [4:0]  rsE,
         output reg  [4:0]  rtE,
         output reg  [4:0]  rdE,
-        output reg [31:0] instrE,
+        output reg [31:0]  instrE,
+        output reg [31:0]  btaE,
 
         output reg         branchE,      
         output reg         jumpE,        
@@ -79,6 +81,7 @@ module id_ex_reg(
         rtE = 5'd0;
         rdE = 5'd0;
         instrE = 32'd0;
+        btaE = 32'd0;
 
         branchE = 0;
         jumpE = 0;
@@ -105,6 +108,7 @@ module id_ex_reg(
             rtE <= 5'd0;
             rdE <= 5'd0;
             instrE <= 32'd0;
+            btaE <= 32'd0;
 
             branchE <= 0;
             jumpE <= 0;
@@ -122,6 +126,7 @@ module id_ex_reg(
             pc_plus4E <= pc_plus4D;
             sext_immE <= sext_immD;
             instrE <= instrD;
+            btaE <= btaD;
             
             rd1E <= rd1D;
             rd2E <= rd2D;

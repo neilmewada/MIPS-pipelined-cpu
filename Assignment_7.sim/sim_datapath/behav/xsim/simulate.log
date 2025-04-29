@@ -5,24 +5,548 @@ Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
-Writing 0x00000000 to register  0
 Inside else
 multu = 0
 Writing 0x00000000 to register  0
 Inside else
 multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000030 to register 29
 Writing 0x00000005 to register  4
-Writing 0x0000000a to register  4
-Writing 0x00000010 to register  4
+Writing 0x00000010 to register 31
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000028 to register 29
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x0000002c to register  4
+Writing 0x00000028 to register 31
+Writing 0x00000002 to register  8
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  9
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000004 to register  4
+Writing 0x0000308c to register 31
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000020 to register 29
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000024 to register  4
+Inside else
+multu = 0
+Writing 0x00000020 to register 31
+Writing 0x00000002 to register  8
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  9
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000003 to register  4
+Writing 0x0000308c to register 31
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000018 to register 29
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x0000001c to register  4
+Inside else
+multu = 0
+Writing 0x00000018 to register 31
+Writing 0x00000002 to register  8
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  9
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000002 to register  4
+Writing 0x0000308c to register 31
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000010 to register 29
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000014 to register  4
+Inside else
+multu = 0
+Writing 0x00000010 to register 31
+Writing 0x00000002 to register  8
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  9
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000001 to register  4
+Writing 0x0000308c to register 31
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000008 to register 29
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x0000000c to register  4
+Inside else
+multu = 0
+Writing 0x00000008 to register 31
+Writing 0x00000002 to register  8
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000001 to register  9
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000001 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000001 to register  2
 Inside else
 multu = 0
 Inside else
 multu = 0
-Writing 0x0000000a to register  5
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
 Inside else
 multu = 0
 Writing 0x00000000 to register  0
-Writing 0x00000005 to register  5
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000030 to register 29
+Writing 0x00000005 to register  4
+Writing 0x00000010 to register 31
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000028 to register 29
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x0000002c to register  4
+Writing 0x00000028 to register 31
+Writing 0x00000002 to register  8
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  9
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
-$finish called at time : 150 ns : File "D:/MS CMPE/Comp. Architecture/MIPS-pipelined-cpu/Assignment_7.srcs/sim_datapath/new/tb_datapath.v" Line 129
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000004 to register  4
+Writing 0x0000308c to register 31
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000020 to register 29
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000024 to register  4
+Inside else
+multu = 0
+Writing 0x00000020 to register 31
+Writing 0x00000002 to register  8
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  9
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000003 to register  4
+Writing 0x0000308c to register 31
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000018 to register 29
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x0000001c to register  4
+Inside else
+multu = 0
+Writing 0x00000018 to register 31
+Writing 0x00000002 to register  8
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  9
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000002 to register  4
+Writing 0x0000308c to register 31
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000010 to register 29
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000014 to register  4
+Inside else
+multu = 0
+Writing 0x00000010 to register 31
+Writing 0x00000002 to register  8
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  9
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000001 to register  4
+Writing 0x0000308c to register 31
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000008 to register 29
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x0000000c to register  4
+Inside else
+multu = 0
+Writing 0x00000008 to register 31
+Writing 0x00000002 to register  8
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000001 to register  9
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Writing 0x00000001 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000001 to register  2
+Inside else
+multu = 0
+Writing 0x00000010 to register 29
+Writing 0x00000010 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+MULTU called, multu = 0
+Writing 0x00000002 to register  4
+Inside if
+multu = 1
+hi = 0x00000000, lo = 0x00000000
+hi = 0x00000000, lo = 0x00000002
+Writing 0x0000308c to register 31
+Inside else
+multu = 0
+Writing 0x00000018 to register 29
+MFLO called
+Writing 0x00000018 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000002 to register  2
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+MULTU called, multu = 0
+Writing 0x00000003 to register  4
+Inside if
+multu = 1
+hi = 0x00000000, lo = 0x00000002
+hi = 0x00000000, lo = 0x00000006
+Writing 0x0000308c to register 31
+Inside else
+multu = 0
+Writing 0x00000020 to register 29
+MFLO called
+Writing 0x00000020 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000006 to register  2
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+MULTU called, multu = 0
+Writing 0x00000004 to register  4
+Inside if
+multu = 1
+hi = 0x00000000, lo = 0x00000006
+hi = 0x00000000, lo = 0x00000018
+Writing 0x0000308c to register 31
+Inside else
+multu = 0
+Writing 0x00000028 to register 29
+MFLO called
+Writing 0x00000028 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000018 to register  2
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+MULTU called, multu = 0
+Writing 0x00000005 to register  4
+Inside if
+multu = 1
+hi = 0x00000000, lo = 0x00000018
+hi = 0x00000000, lo = 0x00000078
+Writing 0x00000010 to register 31
+Inside else
+multu = 0
+Writing 0x00000030 to register 29
+MFLO called
+Writing 0x00000030 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000078 to register  2
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+Inside else
+multu = 0
+Writing 0x00000000 to register  0
+$finish called at time : 1550 ns : File "C:/Projects/MIPS-pipelined-cpu/Assignment_7.srcs/sim_datapath/new/tb_datapath.v" Line 133

@@ -9,6 +9,7 @@ module regfile (
         output reg  [31:0] rd1,
         output reg  [31:0] rd2,
         output reg  [31:0] rd3,
+        output wire [31:0] ra_reg,
         input  wire        rst
     );
 
@@ -41,6 +42,8 @@ module regfile (
         rd2 <= (ra2 == 0) ? 0 : rf[ra2];
         rd3 <= (ra3 == 0) ? 0 : rf[ra3];
     end
+    
+    assign ra_reg = rf[31];
 
     //assign rd1 = (ra1 == 0) ? 0 : rf[ra1];
     //assign rd2 = (ra2 == 0) ? 0 : rf[ra2];

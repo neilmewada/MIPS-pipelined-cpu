@@ -48,6 +48,8 @@ module tb_datapath;
     wire flushE;
     wire [1:0]   ForwardAE;
     wire [1:0]   ForwardBE;
+    wire ForwardAD;
+    wire ForwardBD;
     
     initial begin
         clk = 0;
@@ -77,7 +79,9 @@ module tb_datapath;
         .stallD         (stallD),
         .flushE         (flushE),
         .ForwardAE      (ForwardAE),
-        .ForwardBE      (ForwardBE)
+        .ForwardBE      (ForwardBE),
+        .ForwardAD      (ForwardAD),
+        .ForwardBD      (ForwardBD)
     );
     
     imem imem (
@@ -116,9 +120,9 @@ module tb_datapath;
         #5 // Wait for a delay before starting the test
         reset;
         
-        ra3D = 5'd4;
-        ra3D = 5'd5;
-        //ra3D = 5'd16;
+        //ra3D = 5'd4;
+        //ra3D = 5'd5;
+        ra3D = 5'd16;
         
         ra_dm2 = 32'h10; // Read dmem at address 0x10
         

@@ -24,6 +24,7 @@ verilog xil_defaultlib  \
 "../../../../Assignment_7.srcs/sources_1/new/address_decoder.v" \
 "../../../../Assignment_7.srcs/sources_1/new/factorial_wrapper.v" \
 "../../../../Assignment_7.srcs/sources_1/new/hazard_unit.v" \
+"../../../../Assignment_7.srcs/sources_1/new/cmp.v" \
 "../../../../Assignment_7.srcs/sim_datapath/new/tb_datapath.v" \
 
 # compile glbl module

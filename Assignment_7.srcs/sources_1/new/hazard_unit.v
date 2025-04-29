@@ -25,6 +25,8 @@ module hazard_unit(
         input  wire         we_regE,
         input  wire         we_regM,
         input  wire         we_regW,
+        input  wire         branchD,
+        input  wire [4:0]   rf_waE,
         input  wire [4:0]   rf_waM,
         input  wire [4:0]   rf_waW,
         input  wire [4:0]   rsD,
@@ -32,12 +34,15 @@ module hazard_unit(
         input  wire [4:0]   rtD,
         input  wire [4:0]   rtE,
         input  wire [1:0]   dm2regE,
+        input  wire [1:0]   dm2regM,
         
         output reg          stallF,
         output reg          stallD,
         output reg          flushE,
         output reg  [1:0]   ForwardAE,
-        output reg  [1:0]   ForwardBE
+        output reg  [1:0]   ForwardBE,
+        output reg          ForwardAD,
+        output reg          ForwardBD
     );
     
     initial begin
@@ -46,6 +51,8 @@ module hazard_unit(
         flushE = 0;
         ForwardAE = 0;
         ForwardBE = 0;
+        ForwardAD = 0;
+        ForwardBD = 0;
     end
     
     always @(*) begin
@@ -62,9 +69,22 @@ module hazard_unit(
             else if (we_regW && (rtE != 0) && (rf_waW == rtE))
                 ForwardBE = 2'b01;
             else
-                ForwardBE = 2'b00;     
+                ForwardBE = 2'b00;    
                 
-            if ((rsD == rtE || rtD == rtE) && dm2regE) begin
+            if (branchD && we_regM && rsD != 0 && rf_waM == rsD)
+                ForwardAD = 1'b1;
+            else
+                ForwardAD = 1'b0;
+                
+            if (branchD && we_regM && rtD != 0 && rf_waM == rtD)
+                ForwardBD = 1'b1;
+            else
+                ForwardBD = 1'b0;
+                
+            if (((rsD == rtE || rtD == rtE) && dm2regE) ||
+                (branchD && we_regE && (rf_waE == rsD || rf_waE == rtD)) ||
+                (branchD && dm2regM && (rf_waM == rsD || rf_waM == rtD))) 
+            begin
                 stallF = 1;
                 stallD = 1;
                 flushE = 1;

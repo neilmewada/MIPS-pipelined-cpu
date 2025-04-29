@@ -20,7 +20,9 @@ module datapath (
         output wire stallD,
         output wire flushE,
         output wire [1:0]   ForwardAE,
-        output wire [1:0]   ForwardBE
+        output wire [1:0]   ForwardBE,
+        output wire         ForwardAD,
+        output wire         ForwardBD
     );
 
     
@@ -28,8 +30,9 @@ module datapath (
     wire [31:0] pc_currentF;
     wire [31:0] pc_preE;
     wire [31:0] pc_next;
-    wire [31:0] pc_after_jrM;
+    wire [31:0] pc_after_jrD;
     wire pc_changeM;
+    wire pc_changeD;
     wire [31:0] sext_immD;
     wire [31:0] ba;
     wire [31:0] bta;
@@ -43,10 +46,12 @@ module datapath (
     wire [31:0] lo_reg_outE;     // hi_lo reg output
     
     wire [1:0] dm2regE;
+    wire [1:0] dm2regM;
     
     wire we_regD;
     wire we_regE;
     wire we_regM;
+    wire branchD;
     
     //wire [4:0]       rf_waW;
     //wire        wd_rfW;
@@ -56,6 +61,7 @@ module datapath (
     //assign ba = {sext_imm[29:0], 2'b00};
     //assign jta = {pc_plus4[31:28], instr[25:0], 2'b00};
     
+    wire [4:0]  rf_waE;
     wire [4:0]  rf_waM;
     
     wire [4:0]  rsD;
@@ -68,6 +74,8 @@ module datapath (
         .we_regE        (we_regE),
         .we_regM        (we_regM),
         .we_regW        (we_regW),
+        .branchD        (branchD),
+        .rf_waE         (rf_waE),
         .rf_waM         (rf_waM),
         .rf_waW         (rf_waW),
         .rsD            (rsD),
@@ -75,12 +83,15 @@ module datapath (
         .rtD            (rtD),
         .rtE            (rtE),
         .dm2regE        (dm2regE),
+        .dm2regM        (dm2regM),
         
         .stallF         (stallF),
         .stallD         (stallD),
         .flushE         (flushE),
         .ForwardAE      (ForwardAE),
-        .ForwardBE      (ForwardBE)
+        .ForwardBE      (ForwardBE),
+        .ForwardAD      (ForwardAD),
+        .ForwardBD      (ForwardBD)
     );
 
     // ----------------------------------------------------------
@@ -89,9 +100,9 @@ module datapath (
     wire [31:0] pc_finalF;
 
     mux2 #(32) pc_reg_mux (
-        .sel (pc_changeM),
+        .sel (pc_changeD),
         .a   (pc_plus4F),
-        .b   (pc_after_jrM),
+        .b   (pc_after_jrD),
         .y   (pc_finalF)
     );
 
@@ -138,7 +149,8 @@ module datapath (
     wire [31:0] rd2E;
     wire [4:0]  rdE;
 
-    wire branchD;
+    wire [31:0] pc_preD;
+    wire pc_srcD;
     wire jumpD;
     wire jrD;
     wire multuD;
@@ -161,6 +173,11 @@ module datapath (
     //wire we_regE;
     wire alu_srcE;
     wire we_dmE;
+    wire zeroD;
+    wire [31:0] btaD;
+    wire [31:0] btaE;
+    wire [31:0] jtaD;
+    wire [31:0] ra_regD;
     
     wire [2:0] alu_ctrlE;
 
@@ -182,6 +199,9 @@ module datapath (
         .alu_ctrl       (alu_ctrlD)
     );
     
+    assign pc_srcD = branchD & zeroD;
+    assign pc_changeD = pc_srcD | jumpD | jrD;
+    
     assign rsD = instrD[25:21];
     assign rtD = instrD[20:16]; 
 
@@ -196,12 +216,67 @@ module datapath (
             .rd1            (rd1D),
             .rd2            (rd2D),
             .rd3            (rd3D),
-            .rst            (rst)
+            .rst            (rst),
+            .ra_reg         (ra_regD)
         );
 
     signext se (
             .a              (instrD[15:0]),
             .y              (sext_immD)
+        );
+        
+    wire [31:0] cmp_a;
+    wire [31:0] cmp_b;
+    wire [31:0] pc_nextD;
+        
+    mux2 #(32) rd1_mux(
+        .sel        (ForwardAD),
+        .a          (rd1D),
+        .b          (alu_outM),
+        .y          (cmp_a)
+    );
+    
+    mux2 #(32) rd2_mux(
+        .sel        (ForwardBD),
+        .a          (rd2D),
+        .b          (alu_outM),
+        .y          (cmp_b)
+    );
+    
+    cmp cmp(
+        .a      (cmp_a),
+        .b      (cmp_b),
+        .y      (zeroD)
+    );
+    
+    assign ba = {sext_immD[29:0], 2'b00};
+    assign jtaD = {pc_plus4D[31:28], instrD[25:0], 2'b00};
+    
+    adder pc_plus_br (
+        .a  (ba),
+        .b  (pc_plus4D),
+        .y  (btaD)
+    );
+    
+    mux2 #(32) pc_src_mux (
+        .sel            (pc_srcD),
+        .a              (pc_plus4D),
+        .b              (btaD),
+        .y              (pc_preD)
+    );
+
+    mux2 #(32) pc_jmp_mux (
+            .sel            (jumpD),
+            .a              (pc_preD),
+            .b              (jtaD),
+            .y              (pc_nextD)
+        );
+    
+    mux2 #(32) pc_jr_mux (
+            .sel            (jrD),
+            .a              (pc_nextD),
+            .b              (ra_regD),
+            .y              (pc_after_jrD)
         );
 
     id_ex_reg id_ex (
@@ -217,6 +292,7 @@ module datapath (
         .we_dmD          (we_dmD),
         .dm2regD         (dm2regD),
         .alu_ctrlD       (alu_ctrlD),
+        .btaD            (btaD),
 
         .rd1D       (rd1D),
         .rd2D       (rd2D),
@@ -238,6 +314,7 @@ module datapath (
         .rtE        (rtE),
         .rdE        (rdE),
         .instrE     (instrE),
+        .btaE       (btaE),
 
         .branchE         (branchE),
         .jumpE           (jumpE),
@@ -255,10 +332,8 @@ module datapath (
 
     // ----------------------------------------------------------
     // --- EXE Stage ---
-
-    wire [31:0] btaE;
+    
     wire zeroE;
-    wire [4:0]  rf_waE;
     wire [31:0] alu_outE;
 
     wire [31:0] instrM;
@@ -274,7 +349,7 @@ module datapath (
     wire branchM;
     wire jumpM;
     wire jrM;
-    wire [1:0] dm2regM;
+    
     //wire we_dmM;
     //wire we_regM;
     //wire [31:0] wd_dmE;
@@ -324,14 +399,6 @@ module datapath (
         .b              (instrE[15:11]),
         .c              (5'b11111),
         .y              (rf_waE)
-    );
-
-    assign ba = {sext_immE[29:0], 2'b00};
-
-    adder pc_plus_br (
-        .a  (ba),
-        .b  (pc_plus4E),
-        .y  (btaE)
     );
 
     multu my_multu (
@@ -397,7 +464,6 @@ module datapath (
     // --- MEM Stage ---
 
     wire        pc_srcM;
-    wire [31:0] pc_preM;
     wire [31:0] pc_nextM;
     wire [31:0] alu_outW;
     wire [31:0] pc_plus4W;
@@ -413,27 +479,6 @@ module datapath (
     assign pc_srcM = branchM & zeroM;
     assign jtaM = {pc_plus4M[31:28], instrM[25:0], 2'b00};
     assign pc_changeM = pc_srcM | jumpM | jrM;
-
-    mux2 #(32) pc_src_mux (
-        .sel            (pc_srcM),
-        .a              (pc_plus4M),
-        .b              (btaM),
-        .y              (pc_preM)
-    );
-
-    mux2 #(32) pc_jmp_mux (
-            .sel            (jumpM),
-            .a              (pc_preM),
-            .b              (jtaM),
-            .y              (pc_nextM)
-        );
-    
-    mux2 #(32) pc_jr_mux (
-            .sel            (jrM),
-            .a              (pc_nextM),
-            .b              (alu_paM),
-            .y              (pc_after_jrM)
-        );
         
     mem_wb_reg mem_wb(
         .wd_rf_signalM  (wd_rf_signalM),
