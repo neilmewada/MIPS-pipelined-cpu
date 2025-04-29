@@ -109,5 +109,7 @@ module mips(
         .d          (32'd0),
         .y          (rd_dm)
     );
+    
+    // TODO: Add GPIO here
 
 endmodule

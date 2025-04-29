@@ -92,10 +92,6 @@ module tb_mips;
                 $finish;
             end
             
-            if (i == 2) begin
-                $display("Break");
-            end
-            
             tick;
         end
         
