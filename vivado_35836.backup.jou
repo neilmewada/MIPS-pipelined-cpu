@@ -1,0 +1,59 @@
+#-----------------------------------------------------------
+# Vivado v2022.2 (64-bit)
+# SW Build 3671981 on Fri Oct 14 05:00:03 MDT 2022
+# IP Build 3669848 on Fri Oct 14 08:30:02 MDT 2022
+# Start of session at: Tue May  6 15:45:21 2025
+# Process ID: 35836
+# Current directory: C:/Users/Randy/OneDrive/Desktop/CMPE200/HW7/MIPS-pipelined-cpu
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent33236 C:\Users\Randy\OneDrive\Desktop\CMPE200\HW7\MIPS-pipelined-cpu\Assignment_7.xpr
+# Log file: C:/Users/Randy/OneDrive/Desktop/CMPE200/HW7/MIPS-pipelined-cpu/vivado.log
+# Journal file: C:/Users/Randy/OneDrive/Desktop/CMPE200/HW7/MIPS-pipelined-cpu\vivado.jou
+# Running On: DESKTOP-N836D48, OS: Windows, CPU Frequency: 3792 MHz, CPU Physical cores: 8, Host memory: 17067 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Randy/OneDrive/Desktop/CMPE200/HW7/MIPS-pipelined-cpu/Assignment_7.xpr
+save_project_as hw7mips C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips -force
+launch_simulation -simset [get_filesets sim_mips ]
+source tb_mips.tcl
+close_sim
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+close_design
+close [ open C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/hw7mips.srcs/sources_1/new/gpio_wrapper.v w ]
+add_files C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/hw7mips.srcs/sources_1/new/gpio_wrapper.v
+create_fileset -simset sim_gpio_wrapper
+set_property SOURCE_SET sources_1 [get_filesets sim_mips]
+close [ open C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/hw7mips.srcs/sim_mips/new/tb_gpio_wrapper.v w ]
+add_files -fileset sim_mips C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/hw7mips.srcs/sim_mips/new/tb_gpio_wrapper.v
+add_files -fileset sim_gpio_wrapper -norecurse C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/hw7mips.srcs/sim_mips/new/tb_gpio_wrapper.v
+import_files -fileset sim_gpio_wrapper -force -norecurse C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/hw7mips.srcs/sim_mips/new/tb_gpio_wrapper.v
+export_ip_user_files -of_objects  [get_files C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/hw7mips.srcs/sim_mips/new/tb_gpio_wrapper.v] -no_script -reset -force -quiet
+remove_files  -fileset sim_mips C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/hw7mips.srcs/sim_mips/new/tb_gpio_wrapper.v
+file delete -force C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/hw7mips.srcs/sim_mips/new/tb_gpio_wrapper.v
+current_fileset -simset [ get_filesets sim_gpio_wrapper ]
+current_fileset -simset [ get_filesets sim_factorial_wrapper ]
+launch_simulation -simset [get_filesets sim_factorial_wrapper ]
+source tb_factorial_wrapper.tcl
+close_sim
+current_fileset -simset [ get_filesets sim_gpio_wrapper ]
+set_property top gpio_wrapper [get_filesets sim_gpio_wrapper]
+launch_simulation -simset [get_filesets sim_gpio_wrapper ]
+launch_simulation -simset [get_filesets sim_gpio_wrapper ]
+launch_simulation -simset [get_filesets sim_gpio_wrapper ]
+source gpio_wrapper.tcl
+close_sim
+set_property TOP tb_gpio_wrapper [get_filesets sim_gpio_wrapper]
+launch_simulation -simset [get_filesets sim_gpio_wrapper ]
+source tb_gpio_wrapper.tcl
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+relaunch_sim
+save_project_as Assignment_7 C:/Users/Randy/OneDrive/Desktop/CMPE200/HW7/MIPS-pipelined-cpu/Assignment_7 -force
+import_files
+close_sim

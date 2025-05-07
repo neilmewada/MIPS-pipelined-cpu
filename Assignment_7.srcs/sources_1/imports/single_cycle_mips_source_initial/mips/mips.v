@@ -4,6 +4,8 @@ module mips(
         input  wire         clk,
         input  wire         rst,
         input  wire [4:0]   ra3D,
+        input wire [31:0]   gpI1,
+        input wire [31:0]   gpI2,
         
         output wire [31:0]  rd3D,
         output wire [31:0]  pc_current,
@@ -14,7 +16,9 @@ module mips(
         output wire [31:0] alu_outM,
         output wire we_mem,
         output wire we_fact,
-        output wire [1:0] rd_sel
+        output wire [1:0] rd_sel,
+        output wire [31:0] gpO1,
+        output wire [31:0] gpO2
     );
     
     //reg [4:0] ra3D;
@@ -69,6 +73,7 @@ module mips(
     
     wire [31:0] mem_data;
     wire [31:0] fact_data;
+    wire [31:0] gpio_data;
     
     address_decoder ad (
         .we             (we_dmM),
@@ -106,10 +111,21 @@ module mips(
         .a          (mem_data),
         .b          (mem_data),
         .c          (fact_data),
-        .d          (32'd0),
+        .d          (gpio_data),
         .y          (rd_dm)
     );
     
-    // TODO: Add GPIO here
+    gpio_wrapper gpio (
+        .Clk(clk),
+        .Rst(rst),
+        .WE(we_gpio),
+        .A(alu_outM[3:2]),
+        .gpI1(gpI1),
+        .gpI2(gpI2),
+        .WD(wd_dmM),
+        .RD(gpio_data),
+        .gpO1(gpO1),
+        .gpO2(gpO2)
+    );
 
 endmodule

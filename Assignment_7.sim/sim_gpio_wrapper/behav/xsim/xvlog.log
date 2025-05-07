@@ -64,7 +64,7 @@ INFO: [VRFC 10-311] analyzing module gpio_ad
 INFO: [VRFC 10-311] analyzing module fw_mux5
 INFO: [VRFC 10-311] analyzing module gpO_Reg
 INFO: [VRFC 10-311] analyzing module gpio_wrapper
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/project_2/project_2.srcs/sim_factorial_wrapper/new/tb_factorial_wrapper.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module tb_factorial_wrapper
-INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/project_2/project_2.sim/sim_factorial_wrapper/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/project_2/project_2.srcs/sim_gpio_wrapper/imports/new/tb_gpio_wrapper.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_gpio_wrapper
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Randy/OneDrive/Desktop/CMPE200/hw7mips/project_2/project_2.sim/sim_gpio_wrapper/behav/xsim/glbl.v" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module glbl
