@@ -16,6 +16,7 @@ module mips(
         output wire [31:0] alu_outM,
         output wire we_mem,
         output wire we_fact,
+        output wire we_gpio,
         output wire [1:0] rd_sel,
         output wire [31:0] gpO1,
         output wire [31:0] gpO2
@@ -68,7 +69,7 @@ module mips(
     
     //wire we_mem;
     //wire we_fact;
-    wire we_gpio;
+    //wire we_gpio;
     //wire [1:0] rd_sel;
     
     wire [31:0] mem_data;

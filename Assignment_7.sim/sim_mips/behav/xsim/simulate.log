@@ -7,6 +7,14 @@ Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
 Writing 0x00000000 to register  0
+Writing 0x00000003 to register 11
+Inside else
+multu = 0
+Inside else
+multu = 0
+Writing 0x0000c000 to register 11
+Inside else
+multu = 0
 Writing 0x00000001 to register  8
 Inside else
 multu = 0
@@ -78,6 +86,12 @@ Writing 0x00000001 to register  0
 Inside else
 multu = 0
 Writing 0x00000000 to register  0
+Inside else
+multu = 0
 Writing 0x000002d0 to register 16
+Inside else
+multu = 0
 Writing 0x00000000 to register  0
-$finish called at time : 400 ns : File "C:/Projects/MIPS-pipelined-cpu/Assignment_7.srcs/sim_mips/new/tb_mips.v" Line 92
+Writing 0x0000c008 to register 16
+Writing 0x00000000 to register  0
+$finish called at time : 440 ns : File "D:/MS CMPE/Comp. Architecture/MIPS-pipelined-cpu/Assignment_7.srcs/sim_mips/new/tb_mips.v" Line 106

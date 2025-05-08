@@ -34,7 +34,13 @@ module tb_mips;
     wire [31:0] alu_outM;
     wire we_mem;
     wire we_fact;
+    wire we_gpio;
     wire [1:0] rd_sel;
+    
+    reg [31:0] gpI1;
+    reg [31:0] gpI2;
+    wire [31:0] gpO1;
+    wire [31:0] gpO2;
     
     integer i;
 
@@ -52,12 +58,17 @@ module tb_mips;
         .rd3D       (rd3D),
         .pc_current (pc_current),
         .instr      (instr),
+        .gpI1       (gpI1),
+        .gpI2       (gpI2),
         
         .wd_dmM     (wd_dmM),
         .alu_outM   (alu_outM),
         .we_mem     (we_mem),
         .we_fact    (we_fact),
-        .rd_sel     (rd_sel)
+        .we_gpio    (we_gpio),
+        .rd_sel     (rd_sel),
+        .gpO1       (gpO1),
+        .gpO2       (gpO2)
     );
     
     task tick; 
@@ -78,6 +89,9 @@ module tb_mips;
     initial begin
         #5 // Wait for a delay before starting the test
         reset;
+        
+        gpI1 = 32'd6;
+        gpI2 = 32'd0;
         
         ra3D = 5'd4;
         ra3D = 5'd16;
